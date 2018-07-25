@@ -33,12 +33,6 @@ class PrioritySorter
 
         $testsOrderResult = array(static::SORT_NONE, null);
 
-        foreach ($tests as $test) {
-            if ($test instanceof TestCase && Util::getInvisibleProperty($test, 'dependencies', 'hasDependencies')) {
-                return $testsOrderResult;
-            }
-        }
-
         $orderedTests = new SegmentedQueue($tests);
         foreach ($tests as $position => $test) {
             list($testOrderResult, $time) = $this->sortTest($test, $position, $orderedTests);
@@ -75,6 +69,14 @@ class PrioritySorter
 
         if ($groupsOrderResult) {
             Util::setInvisibleProperty($suite, 'groups', $groups, 'setGroupDetails');
+        }
+
+        foreach ($tests as $test) {
+            if ($test instanceof TestCase && Util::getInvisibleProperty($test, 'dependencies', 'hasDependencies')) {
+                // @todo instead of dumping the test if it has dependencies, lets push its dependencies ahead of it.
+                #\Kint::dump($test->getDependencies());
+                return $testsOrderResult;
+            }
         }
 
         return $testsOrderResult[0] > $groupsOrderResult[0] ? $testsOrderResult : $groupsOrderResult;

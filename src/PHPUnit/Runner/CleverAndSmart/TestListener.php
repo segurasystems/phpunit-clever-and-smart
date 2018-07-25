@@ -88,7 +88,62 @@ class TestListener implements TestListenerInterface
                 )
             )
         );
+
+        echo "Before:\n";
+        foreach($suite->tests() as $i => $testsuite){
+            /** @var $testsuite TestSuite */
+            echo " {$i}:" . $testsuite->getName() . "\n";
+            if($testsuite->getName() == 'examples'){
+                $examplesBefore = $testsuite;
+            }
+        }
+
         $sorter->sort($suite);
+
+        echo "\nAfter:\n";
+        foreach($suite->tests() as $i => $testsuite){
+            /** @var $testsuite TestSuite */
+            echo " {$i}:" . $testsuite->getName() . "\n";
+            if($testsuite->getName() == 'examples'){
+                $examplesAfter = $testsuite;
+            }
+        }
+
+        \Kint::dump(
+            $this->storage->getRecordings(
+                array(
+                    StorageInterface::STATUS_ERROR,
+                    StorageInterface::STATUS_FAILURE,
+                    StorageInterface::STATUS_CANCEL,
+                    StorageInterface::STATUS_FATAL_ERROR,
+                    StorageInterface::STATUS_SKIPPED,
+                    StorageInterface::STATUS_INCOMPLETE,
+                    StorageInterface::STATUS_WARNING,
+                ),
+                false
+            )
+        );
+
+        /** @var $examplesBefore TestSuite */
+        /** @var $examplesAfter TestSuite */
+        echo "\nBefore:\n";
+
+        foreach($examplesBefore->getGroupDetails() as $group){
+            /** @var $group TestSuite[] */
+            foreach($group as $item){
+                echo "{$item->getName()}\n";
+            }
+        }
+        echo "\nAfter:\n";
+
+        foreach($examplesAfter->getGroupDetails() as $group){
+            /** @var $group TestSuite[] */
+            foreach($group as $item){
+                echo "{$item->getName()}\n";
+            }
+        }
+
+exit;
     }
 
     public function startTest(Test $test) : void
