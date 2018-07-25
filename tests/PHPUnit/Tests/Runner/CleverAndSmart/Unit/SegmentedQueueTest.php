@@ -2,7 +2,7 @@
 namespace PHPUnit\Runner\CleverAndSmart\Unit;
 
 use PHPUnit\Runner\CleverAndSmart\SegmentedQueue;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 
 class SegmentedQueueTest extends TestCase
 {

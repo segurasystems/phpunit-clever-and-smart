@@ -1,8 +1,8 @@
 <?php
 namespace PHPUnit\Runner\CleverAndSmart;
 
-use PHPUnit_Framework_TestCase as TestCase;
-use PHPUnit_Framework_TestSuite as TestSuite;
+use PHPUnit\Framework\TestCase as TestCase;
+use PHPUnit\Framework\TestSuite as TestSuite;
 
 class PrioritySorter
 {

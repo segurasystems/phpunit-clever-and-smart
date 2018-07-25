@@ -1,7 +1,7 @@
 <?php
 namespace PHPUnit\Tests\Runner\CleverAndSmart\Integration;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 
 /** @group grp */
 class SkipTest extends TestCase

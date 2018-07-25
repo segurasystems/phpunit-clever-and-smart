@@ -3,8 +3,8 @@ namespace PHPUnit\Runner\CleverAndSmart\Unit;
 
 use PHPUnit\Runner\CleverAndSmart\PrioritySorter;
 use PHPUnit\Runner\CleverAndSmart\Util;
-use PHPUnit_Framework_TestCase as TestCase;
-use PHPUnit_Framework_TestSuite as TestSuite;
+use PHPUnit\Framework\TestCase as TestCase;
+use PHPUnit\Framework\TestSuite as TestSuite;
 
 class Test extends TestCase
 {

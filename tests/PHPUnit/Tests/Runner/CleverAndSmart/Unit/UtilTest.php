@@ -2,7 +2,7 @@
 namespace PHPUnit\Runner\CleverAndSmart\Unit;
 
 use PHPUnit\Runner\CleverAndSmart\Util;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 
 class Mother
 {

@@ -3,7 +3,7 @@ namespace PHPUnit\Runner\CleverAndSmart\Storage;
 
 use Closure;
 use PHPUnit\Runner\CleverAndSmart\Exception\StorageException;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 use PHPUnit\Runner\CleverAndSmart\Run;
 use Exception;
 use SQLite3;

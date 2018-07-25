@@ -2,13 +2,13 @@
 namespace PHPUnit\Runner\CleverAndSmart;
 
 use PHPUnit\Runner\CleverAndSmart\Storage\StorageInterface;
-use PHPUnit_Framework_TestListener as TestListenerInterface;
-use PHPUnit_Framework_Test as Test;
-use PHPUnit_Framework_TestCase as TestCase;
-use PHPUnit_Framework_TestSuite as TestSuite;
-use PHPUnit_Framework_AssertionFailedError as AssertionFailedError;
+use PHPUnit\Framework\TestListener as TestListenerInterface;
+use PHPUnit\Framework\Test as Test;
+use PHPUnit\Framework\TestCase as TestCase;
+use PHPUnit\Framework\TestSuite as TestSuite;
+use PHPUnit\Framework\AssertionFailedError as AssertionFailedError;
 use Exception;
-use PHPUnit_Runner_BaseTestRunner as TestRunner;
+use PHPUnit\Runner\BaseTestRunner as TestRunner;
 
 declare(ticks=1);
 

@@ -4,7 +4,7 @@ namespace PHPUnit\Runner\CleverAndSmart\Unit\Storage;
 use PHPUnit\Runner\CleverAndSmart\Run;
 use PHPUnit\Runner\CleverAndSmart\Storage\Sqlite3Storage;
 use PHPUnit\Runner\CleverAndSmart\Storage\StorageInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase as TestCase;
 use ReflectionClass;
 
 class Test extends TestCase
