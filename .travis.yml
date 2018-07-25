@@ -7,6 +7,9 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7.0
+  - 7.1
+  - 7.2
   - hhvm
 
 env:
@@ -18,6 +21,26 @@ env:
   - PHPUNIT_VERSION="4.3.*"
   - PHPUNIT_VERSION="4.4.*"
   - PHPUNIT_VERSION="4.5.*"
+  - PHPUNIT_VERSION="4.6.*"
+  - PHPUNIT_VERSION="4.7.*"
+  - PHPUNIT_VERSION="4.8.*"
+  - PHPUNIT_VERSION="5.0.*"
+  - PHPUNIT_VERSION="5.1.*"
+  - PHPUNIT_VERSION="5.2.*"
+  - PHPUNIT_VERSION="5.3.*"
+  - PHPUNIT_VERSION="5.4.*"
+  - PHPUNIT_VERSION="5.5.*"
+  - PHPUNIT_VERSION="5.6.*"
+  - PHPUNIT_VERSION="5.7.*"
+  - PHPUNIT_VERSION="6.0.*"
+  - PHPUNIT_VERSION="6.1.*"
+  - PHPUNIT_VERSION="6.2.*"
+  - PHPUNIT_VERSION="6.3.*"
+  - PHPUNIT_VERSION="6.4.*"
+  - PHPUNIT_VERSION="6.5.*"
+  - PHPUNIT_VERSION="7.0.*"
+  - PHPUNIT_VERSION="7.1.*"
+  - PHPUNIT_VERSION="7.2.*"
   - PHPUNIT_VERSION="dev-master"
   
 matrix:
