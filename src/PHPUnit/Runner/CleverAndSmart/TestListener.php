@@ -1,6 +1,7 @@
 <?php
 namespace PHPUnit\Runner\CleverAndSmart;
 
+use PHPUnit\Framework\Warning;
 use PHPUnit\Runner\CleverAndSmart\Storage\StorageInterface;
 use PHPUnit\Framework\TestListener as TestListenerInterface;
 use PHPUnit\Framework\Test as Test;
@@ -32,21 +33,26 @@ class TestListener implements TestListenerInterface
         $this->run = new Run();
     }
 
-    public function addError(Test $test, Exception $e, $time)
+    public function addError(Test $test, \Throwable $t, float $time) : void
     {
         $this->storage->record($this->run, $test, $time, StorageInterface::STATUS_ERROR);
     }
 
-    public function addFailure(Test $test, AssertionFailedError $e, $time)
+    public function addFailure(Test $test, AssertionFailedError $e, float $time) : void
     {
         $this->storage->record($this->run, $test, $time, StorageInterface::STATUS_ERROR);
     }
 
-    public function addRiskyTest(Test $test, Exception $e, $time)
+    public function addWarning(Test $test, Warning $e, float $time): void
+    {
+        $this->storage->record($this->run, $test, $time, StorageInterface::STATUS_WARNING);
+    }
+
+    public function addRiskyTest(Test $test, \Throwable $t, float $time) : void
     {
     }
 
-    public function startTestSuite(TestSuite $suite)
+    public function startTestSuite(TestSuite $suite) : void
     {
         if ($this->reordered) {
             return;
@@ -72,6 +78,7 @@ class TestListener implements TestListenerInterface
                     StorageInterface::STATUS_FATAL_ERROR,
                     StorageInterface::STATUS_SKIPPED,
                     StorageInterface::STATUS_INCOMPLETE,
+                    StorageInterface::STATUS_WARNING,
                 ),
                 false
             ),
@@ -84,12 +91,12 @@ class TestListener implements TestListenerInterface
         $sorter->sort($suite);
     }
 
-    public function startTest(Test $test)
+    public function startTest(Test $test) : void
     {
         $this->currentTest = $test;
     }
 
-    public function endTest(Test $test, $time)
+    public function endTest(Test $test, $time) : void
     {
         $this->currentTest = null;
         if ($test instanceof TestCase && $test->getStatus() === TestRunner::STATUS_PASSED) {
@@ -97,17 +104,17 @@ class TestListener implements TestListenerInterface
         }
     }
 
-    public function addIncompleteTest(Test $test, Exception $e, $time)
+    public function addIncompleteTest(Test $test, \Throwable $t, $time) : void
     {
         $this->storage->record($this->run, $test, $time, StorageInterface::STATUS_INCOMPLETE);
     }
 
-    public function addSkippedTest(Test $test, Exception $e, $time)
+    public function addSkippedTest(Test $test, \Throwable $t, $time) : void
     {
         $this->storage->record($this->run, $test, $time, StorageInterface::STATUS_SKIPPED);
     }
 
-    public function endTestSuite(TestSuite $suite)
+    public function endTestSuite(TestSuite $suite) : void
     {
     }
 

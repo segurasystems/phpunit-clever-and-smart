@@ -13,6 +13,7 @@ interface StorageInterface
     const STATUS_ERROR       = 4;
     const STATUS_FATAL_ERROR = 5;
     const STATUS_CANCEL      = 6;
+    const STATUS_WARNING     = 7;
 
     /**
      * Record a test run
