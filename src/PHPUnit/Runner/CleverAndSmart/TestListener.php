@@ -4,10 +4,10 @@ namespace PHPUnit\Runner\CleverAndSmart;
 use PHPUnit\Framework\Warning;
 use PHPUnit\Runner\CleverAndSmart\Storage\StorageInterface;
 use PHPUnit\Framework\TestListener as TestListenerInterface;
-use PHPUnit\Framework\Test as Test;
-use PHPUnit\Framework\TestCase as TestCase;
-use PHPUnit\Framework\TestSuite as TestSuite;
-use PHPUnit\Framework\AssertionFailedError as AssertionFailedError;
+use PHPUnit\Framework\Test;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\Framework\AssertionFailedError;
 use Exception;
 use PHPUnit\Runner\BaseTestRunner as TestRunner;
 
@@ -124,26 +124,30 @@ class TestListener implements TestListenerInterface
             )
         );
 
-        /** @var $examplesBefore TestSuite */
-        /** @var $examplesAfter TestSuite */
-        echo "\nBefore:\n";
-
-        foreach($examplesBefore->getGroupDetails() as $group){
-            /** @var $group TestSuite[] */
-            foreach($group as $item){
-                echo "{$item->getName()}\n";
+        //foreach($suite->tests() as $i => $groups){
+        //    foreach($groups->getGroupDetails() as $group) {
+            foreach($examplesAfter->getGroupDetails() as $group){
+                /** @var $group TestSuite[] */
+                foreach ($group as $item) {
+                    echo " > {$item->getName()}\n";
+                    foreach ($item->getGroupDetails() as $j => $innerItem) {
+                        echo "  > {$j}\n";
+                        /** @var $innerItem TestSuite[] */
+                        foreach ($innerItem as $i => $test) {
+                            echo "   > {$i}: {$test->getName()}\n";
+                            if (Util::getInvisibleProperty($test, 'dependencies', 'hasDependencies')) {
+                                $dependencies = Util::getInvisibleProperty($test, 'dependencies', 'getDependencies');
+                             #   \Kint::dump($dependencies);
+                            }
+                        }
+                    }
+                }
             }
-        }
-        echo "\nAfter:\n";
+        //}
 
-        foreach($examplesAfter->getGroupDetails() as $group){
-            /** @var $group TestSuite[] */
-            foreach($group as $item){
-                echo "{$item->getName()}\n";
-            }
-        }
 
-exit;
+
+#exit;
     }
 
     public function startTest(Test $test) : void

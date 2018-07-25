@@ -71,14 +71,6 @@ class PrioritySorter
             Util::setInvisibleProperty($suite, 'groups', $groups, 'setGroupDetails');
         }
 
-        foreach ($tests as $test) {
-            if ($test instanceof TestCase && Util::getInvisibleProperty($test, 'dependencies', 'hasDependencies')) {
-                // @todo instead of dumping the test if it has dependencies, lets push its dependencies ahead of it.
-                #\Kint::dump($test->getDependencies());
-                return $testsOrderResult;
-            }
-        }
-
         return $testsOrderResult[0] > $groupsOrderResult[0] ? $testsOrderResult : $groupsOrderResult;
     }
 
